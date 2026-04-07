@@ -34,20 +34,24 @@ This system takes a **Dictionary-driven, Just-In-Time (JIT)** approach. The "Poo
 1. **Setup the Manager:** Create an empty GameObject in your scene named "PoolManager" and attach the "PoolManager.cs" script.
 2. **Spawning Objects:** Instead of using Unity's native "Instantiate", call the pool manager from any script:
 
+
 public GameObject bulletPrefab;
 
 void Shoot()
 {
     PoolManager.Instance.Spawn(bulletPrefab, transform.position, transform.rotation);
 }
-"
+
+
 3. **Despawning Objects (Manually):** If you want an enemy to die or a bullet to disappear on impact, just get the "PooledObject" component and call release:
+
 
 void OnCollisionEnter(Collision col)
 {
     GetComponent<PooledObject>().Release();
 }
-"
+
+
 4. **Despawning Objects (Automatically):** If you are spawning an explosion particle, just add the "AutoDespawn.cs" script to the explosion prefab and set the delay to 2 seconds. It will handle the rest!
 
 ---
